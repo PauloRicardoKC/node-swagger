@@ -27,5 +27,8 @@ At the terminal, run the command npm install command to restore the packages.
 
 <h3>Run Application</h3>
 At the terminal, run the command npm run dev. 
+
+At the browser, navigate to http://localhost:3000/swagger/api-docs/.
+
 At the Postman, simulate the verbs [GET, POST, PUT, DELETE] to http://localhost:3000/brands or http://localhost:3000/cars. 
-At the brownser, navigate to http://localhost:3000/swagger/api-docs/.
+
