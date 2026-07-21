@@ -14,7 +14,7 @@
     "express": "^4.22.2",
     "http": "0.0.0",
     "mongoose": "^5.9.5",
-    "swagger-jsdoc": "^4.0.0",
+    "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
