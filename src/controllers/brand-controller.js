@@ -1,30 +1,30 @@
 const ValidationContract = require('../validators/fluent-validator')
 const repository = require('../repositories/brand-repository');
 
-exports.get = async (req, res, next) => {
+exports.get = async (req, res) => {
     try {
-        var data = await repository.get();
+        const data = await repository.get();
         res.status(200).send(data);
     } catch (e) {
         res.status(500).send({
             message: 'Falha ao processar sua requisição.'
         });
     }
-}
+};
 
-exports.getById = async (req, res, next) => {
+exports.getById = async (req, res) => {
     try {
-        var data = await repository.getById(req.params.id);
+        const data = await repository.getById(req.params.id);
         res.status(200).send(data);
     } catch (e) {
         res.status(500).send({
             message: 'Falha ao processar sua requisição.'
         });
     }
-}
+};
 
-exports.post = async (req, res, next) => {
-    let contract = new ValidationContract();
+exports.post = async (req, res) => {
+    const contract = new ValidationContract();
     contract.hasMinLen(req.body.name, 2, 'O nome deve conter pelo menos 2 caracteres');
 
     if (!contract.isValid()) {
@@ -42,11 +42,11 @@ exports.post = async (req, res, next) => {
             message: 'Falha ao processar sua requisição.'
         });
     }
-}
+};
 
-exports.put = async (req, res, next) => {
+exports.put = async (req, res) => {
     try {
-        await repository.update(req.params.id, req.body)
+        await repository.update(req.params.id, req.body);
         res.status(200).send({
             message: 'Marca atualizado com sucesso!'
         });
@@ -55,11 +55,11 @@ exports.put = async (req, res, next) => {
             message: 'Falha ao processar sua requisição.'
         });
     }
-}
+};
 
-exports.delete = async (req, res, next) => {
+exports.delete = async (req, res) => {
     try {
-        await repository.delete(req.params.id)
+        await repository.delete(req.params.id);
         res.status(200).send({
             message: 'Marca removido com sucesso!'
         });
@@ -68,4 +68,4 @@ exports.delete = async (req, res, next) => {
             message: 'Falha ao processar sua requisição.'
         });
     }
-}
+};

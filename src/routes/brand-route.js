@@ -111,6 +111,6 @@ router.put('/:id', controller.put);
  *        500: 
  *          description: Failed to process your request.
  */
-router.delete('/', controller.delete);
+router.delete('/:id', controller.delete);
 
 module.exports = router;

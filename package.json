@@ -1,23 +1,47 @@
 {
   "name": "node-cars",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Express API with MongoDB and Swagger documentation.",
+  "main": "bin/server.js",
   "scripts": {
-    "dev": "nodemon ./bin/server.js"
+    "dev": "nodemon ./bin/server.js",
+    "start": "node ./bin/server.js",
+    "test": "node --test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "build": "node --check ./bin/server.js && node --check ./src/app.js && node --check ./src/routes/index-route.js && node --check ./src/routes/health-route.js && node --check ./src/routes/car-route.js && node --check ./src/routes/brand-route.js && node --check ./src/routes/swagger.js && node --check ./src/controllers/car-controller.js && node --check ./src/controllers/brand-controller.js && node --check ./src/repositories/car-repository.js && node --check ./src/repositories/brand-repository.js && node --check ./src/models/car.js && node --check ./src/models/brand.js && node --check ./src/validators/fluent-validator.js"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "swagger",
+    "api"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "overrides": {
+    "fast-uri": "^3.1.5"
+  },
   "dependencies": {
-    "debug": "^4.1.1",
-    "express": "^4.22.2",
-    "http": "0.0.0",
-    "mongoose": "^5.9.5",
+    "cors": "^2.8.6",
+    "debug": "^4.3.7",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.6.1",
+    "helmet": "^8.3.0",
+    "mongoose": "^8.9.1",
+    "morgan": "^1.11.0",
     "swagger-jsdoc": "^6.3.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "eslint": "^8.57.1",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
   }
 }

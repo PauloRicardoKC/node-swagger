@@ -1,45 +1,48 @@
-let errors = [];
-
 function ValidationContract() {
-    errors = [];
+  this.errorsList = [];
 }
 
-ValidationContract.prototype.isRequired = (value, message) => {
-    if (!value || value.length <= 0)
-        errors.push({ message: message });
-}
+ValidationContract.prototype.isRequired = function isRequired(value, message) {
+  if (value === undefined || value === null || String(value).trim().length === 0) {
+    this.errorsList.push({ message });
+  }
+};
 
-ValidationContract.prototype.hasMinLen = (value, min, message) => {
-    if (!value || value.length < min)
-        errors.push({ message: message });
-}
+ValidationContract.prototype.hasMinLen = function hasMinLen(value, min, message) {
+  if (value === undefined || value === null || String(value).length < min) {
+    this.errorsList.push({ message });
+  }
+};
 
-ValidationContract.prototype.hasMaxLen = (value, max, message) => {
-    if (!value || value.length > max)
-        errors.push({ message: message });
-}
+ValidationContract.prototype.hasMaxLen = function hasMaxLen(value, max, message) {
+  if (value === undefined || value === null || String(value).length > max) {
+    this.errorsList.push({ message });
+  }
+};
 
-ValidationContract.prototype.isFixedLen = (value, len, message) => {
-    if (value.length != len)
-        errors.push({ message: message });
-}
+ValidationContract.prototype.isFixedLen = function isFixedLen(value, len, message) {
+  if (value === undefined || value === null || String(value).length !== len) {
+    this.errorsList.push({ message });
+  }
+};
 
-ValidationContract.prototype.isEmail = (value, message) => {
-    var reg = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-    if (!reg.test(value))
-        errors.push({ message: message });
-}
+ValidationContract.prototype.isEmail = function isEmail(value, message) {
+  const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!reg.test(String(value || ''))) {
+    this.errorsList.push({ message });
+  }
+};
 
-ValidationContract.prototype.errors = () => { 
-    return errors; 
-}
+ValidationContract.prototype.errors = function errors() {
+  return this.errorsList;
+};
 
-ValidationContract.prototype.clear = () => {
-    errors = [];
-}
+ValidationContract.prototype.clear = function clear() {
+  this.errorsList = [];
+};
 
-ValidationContract.prototype.isValid = () => {
-    return errors.length == 0;
-}
+ValidationContract.prototype.isValid = function isValid() {
+  return this.errorsList.length === 0;
+};
 
 module.exports = ValidationContract;
